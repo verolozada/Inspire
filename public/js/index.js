@@ -33,6 +33,12 @@ $("#addArt").on("click", event => {
   $.post("/write", newArticle).then(data => {
     console.log(data);
   });
+
+  $("#name").val("");
+  $("#photo").val("");
+  $("#artTitle").val("");
+  $("#textarea1").val("");
+  $("#charities").val("");
 });
 
 $(".deleteBtn").on("click", function(event) {

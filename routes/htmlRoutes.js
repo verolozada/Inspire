@@ -7,6 +7,9 @@ module.exports = app => {
   app.get("/write", function(req, res) {
     res.render("write");
   });
+  app.get("/about", function(req, res) {
+    res.render("about");
+  });
   app.post("/write", (req, res) => {
     db.Article.create({
       author: req.body.name,
