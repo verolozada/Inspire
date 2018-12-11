@@ -1,10 +1,18 @@
 const db = require("../models");
 
+function isUserAuthenticated(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.send("Hello");
+  }
+}
+
 module.exports = app => {
   app.get("/", (req, res) => {
     res.render("index");
   });
-  app.get("/write", (req, res) => {
+  app.get("/write", isUserAuthenticated, function(req, res) {
     res.render("write");
   });
   app.post("/write", (req, res) => {
@@ -30,4 +38,18 @@ module.exports = app => {
       res.render("read", article);
     });
   });
+
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: ["profile"]
+    })
+  );
+
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", function(req, res) {
+      res.redirect("write");
+    })
+  );
 };
