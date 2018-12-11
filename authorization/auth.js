@@ -50,3 +50,17 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
+
+// Middleware to check if the user is authenticated
+function isUserAuthenticated(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.send('You must login!');
+    }
+}
+
+// Routes
+app.get('/', (req, res) => {
+    res.render('auth.html');
+});
