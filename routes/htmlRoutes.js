@@ -1,14 +1,6 @@
 const db = require("../models");
-// const passport = require("passport");
 
 module.exports = app => {
-  // function isUserAuthenticated(req, res, next) {
-  //   if (req.user) {
-  //     next();
-  //   } else {
-  //     res.send("Hello");
-  //   }
-  // }
   app.get("/", (req, res) => {
     res.render("index");
   });
@@ -39,18 +31,4 @@ module.exports = app => {
       res.render("read", article);
     });
   });
-
-  // app.get(
-  //   "/auth/google",
-  //   passport.authenticate("google", {
-  //     scope: ["profile"]
-  //   })
-  // );
-
-  // app.get(
-  //   "/auth/google/callback",
-  //   passport.authenticate("google", function(req, res) {
-  //     res.redirect("write");
-  //   })
-  // );
 };
