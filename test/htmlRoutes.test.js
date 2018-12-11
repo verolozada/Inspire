@@ -5,8 +5,8 @@ const chaiHttp = require("chai-http");
 
 chai.use(chaiHttp);
 
-describe("HTML Routes", function () {
-  this.beforeEach(function () {
+describe("HTML Routes", function() {
+  this.beforeEach(function() {
     requests = chai.request(server);
   });
 
