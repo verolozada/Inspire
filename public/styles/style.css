@@ -26,3 +26,7 @@ main {
   filter: grayscale(100%);
   height: auto;
 }  
+
+.input-field {
+  color: black;
+}
