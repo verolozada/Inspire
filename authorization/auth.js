@@ -74,3 +74,19 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
     res.redirect('/secret');
 });
+
+// Secret route
+app.get('/secret', isUserAuthenticated, (req, res) => {
+    res.render('test.html');
+});
+
+// Logout route
+app.get('/logout', (req, res) => {
+    req.logOut();
+    req.session = null;
+    res.redirect('auth.html');
+});
+
+app.listen(app.get('port'), () => {
+    console.log('Server Started! App now listening on port 8000');
+});
