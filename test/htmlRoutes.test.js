@@ -5,8 +5,8 @@ const chaiHttp = require("chai-http");
 
 chai.use(chaiHttp);
 
-describe("HTML Routes", function() {
-  this.beforeEach(function() {
+describe("HTML Routes", function () {
+  this.beforeEach(function () {
     requests = chai.request(server);
   });
 
@@ -31,7 +31,7 @@ describe("HTML Routes", function() {
   });
 
   // Test Read Page
-  it("should /GET the about page", () => {
+  it("should /GET the read page", () => {
     requests.get("/read").end((err, res) => {
       var statusCode = res.status;
 
@@ -40,13 +40,13 @@ describe("HTML Routes", function() {
     });
   });
 
-  // Test About Page
-  it("should /GET the about page", () => {
-    requests.get("/about").end((err, res) => {
+  // Test for 404 error
+  it("should catch all routes", () => {
+    requests.get("/*").end((err, res) => {
       var statusCode = res.status;
 
       // Assertions
-      expect(statusCode).to.equal(200);
+      expect(statusCode.to.equal(404));
     });
   });
 });
