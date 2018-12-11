@@ -1,18 +1,18 @@
 const db = require("../models");
-
-function isUserAuthenticated(req, res, next) {
-  if (req.user) {
-    next();
-  } else {
-    res.send("Hello");
-  }
-}
+// const passport = require("passport");
 
 module.exports = app => {
+  // function isUserAuthenticated(req, res, next) {
+  //   if (req.user) {
+  //     next();
+  //   } else {
+  //     res.send("Hello");
+  //   }
+  // }
   app.get("/", (req, res) => {
     res.render("index");
   });
-  app.get("/write", isUserAuthenticated, function(req, res) {
+  app.get("/write", function(req, res) {
     res.render("write");
   });
   app.post("/write", (req, res) => {
@@ -20,7 +20,8 @@ module.exports = app => {
       author: req.body.name,
       title: req.body.title,
       body: req.body.body,
-      photo: req.body.photo
+      photo: req.body.photo,
+      charities: req.body.charities
     })
       .then(data => {
         res.json(data);
@@ -39,17 +40,17 @@ module.exports = app => {
     });
   });
 
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile"]
-    })
-  );
+  // app.get(
+  //   "/auth/google",
+  //   passport.authenticate("google", {
+  //     scope: ["profile"]
+  //   })
+  // );
 
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", function(req, res) {
-      res.redirect("write");
-    })
-  );
+  // app.get(
+  //   "/auth/google/callback",
+  //   passport.authenticate("google", function(req, res) {
+  //     res.redirect("write");
+  //   })
+  // );
 };

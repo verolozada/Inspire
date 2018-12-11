@@ -9,7 +9,9 @@ module.exports = function(app) {
   });
 
   app.delete("/api/articles/:id", function(req, res) {
-    db.Article.destroy({ where: { id: req.params.id } }).then(function(dbArticle) {
+    db.Article.destroy({ where: { id: req.params.id } }).then(function(
+      dbArticle
+    ) {
       console.log(dbArticle);
       res.json(dbArticle);
     });

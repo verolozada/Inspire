@@ -24,6 +24,9 @@ $("#addArt").on("click", event => {
       .trim(),
     body: $("#textarea1")
       .val()
+      .trim(),
+    charities: $("#charities")
+      .val()
       .trim()
   };
   console.log(newArticle);
