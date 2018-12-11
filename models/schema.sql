@@ -1,0 +1,7 @@
+DROP DATABASE IF EXISTS inspiredb;
+CREATE DATABASE inspiredb;
+
+DROP DATABASE IF EXISTS testdb;
+CREATE DATABASE testdb;
+
+
