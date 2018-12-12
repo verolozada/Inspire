@@ -10,7 +10,7 @@ module.exports = app => {
   app.get("/about", function(req, res) {
     res.render("about");
   });
-  app.post("/write", (req, res) => {
+  app.post("/write", function(req, res){
     db.Article.create({
       author: req.body.name,
       title: req.body.title,
@@ -25,7 +25,7 @@ module.exports = app => {
         res.json(error);
       });
   });
-  app.get("/read", (req, res) => {
+  app.get("/read", function(req, res){
     db.Article.findAll({}).then(function(dbArticles) {
       var article = {
         article: dbArticles
@@ -33,5 +33,9 @@ module.exports = app => {
       console.log(dbArticles);
       res.render("read", article);
     });
+  });
+
+  app.get("*", function(req,res){
+    res.render("404");
   });
 };
